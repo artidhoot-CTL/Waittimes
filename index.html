@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>GTA ER Wait Times</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f7fb;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+width:70%;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ccc;
+}
+
+th{
+background:#2d6cdf;
+color:white;
+}
+
+.green{color:green}
+.yellow{color:orange}
+.red{color:red}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Greater Toronto ER Wait Times</h1>
+<p>Updated automatically</p>
+
+<table>
+
+<tr>
+<th>Hospital</th>
+<th>Estimated Wait</th>
+</tr>
+
+<tr>
+<td>Brampton Civic Hospital</td>
+<td id="brampton">Loading...</td>
+</tr>
+
+<tr>
+<td>Etobicoke General Hospital</td>
+<td id="etobicoke">Loading...</td>
+</tr>
+
+<tr>
+<td>Toronto General Hospital</td>
+<td id="tgh">Loading...</td>
+</tr>
+
+<tr>
+<td>Oakville Trafalgar Memorial</td>
+<td id="oakville">Loading...</td>
+</tr>
+
+</table>
+
+<script>
+
+async function loadData(){
+
+const response = await fetch("https://YOURAPI.onrender.com/waits");
+const data = await response.json();
+
+document.getElementById("brampton").innerText=data.brampton;
+document.getElementById("etobicoke").innerText=data.etobicoke;
+document.getElementById("tgh").innerText=data.tgh;
+document.getElementById("oakville").innerText=data.oakville;
+
+}
+
+loadData();
+setInterval(loadData,300000);
+
+</script>
+
+</body>
+</html>
